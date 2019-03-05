@@ -1,27 +1,23 @@
 <template>
   <div id="app">
-    <el-menu mode="horizontal">
-      <el-menu-item index="1"><router-link to="/">Inicio</router-link></el-menu-item>
-      <el-menu-item index="2"><router-link to="/turismo">Turismo</router-link></el-menu-item>
-      <el-menu-item index="3"><router-link to="/cultura">Cultura</router-link></el-menu-item>
-    </el-menu>
-    <Home/>
+    <nav-bar></nav-bar>
+    <div class="h-screen v-screen">
+      <transition name="moveInUp">
+        <router-view/>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
-import Home from './views/Home.vue'
-import Turismo from './views/Turismo.vue'
-import Cultura from './views/Cultura.vue'
+import NavBar from '@/components/NavBar';
 
 export default {
   name: 'app',
   components: {
-    Home,
-    Turismo,
-    Cultura,
-  }
-}
+    NavBar,
+  },
+};
 </script>
 
 <style>
@@ -31,6 +27,21 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  min-height: 100%;
+}
+
+.moveInUp-enter-active{
+  animation: fadeIn .5s ease-in;
+}
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 0.5;
+  }
+  100%{
+    opacity: 1;
+  }
 }
 </style>
